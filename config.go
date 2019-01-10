@@ -26,6 +26,7 @@ type Config struct {
 	onlyFiles       bool
 	onlyDirs        bool
 	allFiles        bool
+	verbose			bool
 }
 
 func (c *Config) registerFlags(f *flag.FlagSet) {
@@ -52,7 +53,9 @@ func (c *Config) registerFlags(f *flag.FlagSet) {
 	f.BoolVar(&c.onlyDirs, "only-dirs", false, `
             Only match directories (not files).`)
 	f.BoolVar(&c.allFiles, "all", false, `
-            Include normally ignored files (VCS and editor special files).`)
+			Include normally ignored files (VCS and editor special files).`)
+	f.BoolVarP(&verbose, "verbose", "v", false, `
+			Verbose mode: print out more information about what reflex is doing.`)
 }
 
 // ReadConfigs reads configurations from either a file or, as a special case,
